@@ -1,0 +1,10 @@
+{
+  "name": "produtividade-pro",
+  "version": "1.0.0",
+  "description": "Centro de operações com IA",
+  "dependencies": {
+    "openai": "^4.20.0",
+    "formidable": "^3.5.1",
+    "node-fetch": "^3.3.2"
+  }
+}

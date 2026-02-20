@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produtividade Pro IA · Centro de Operações</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Cabeçalho com estatísticas -->
+        <header class="stats">
+            <div class="stat-card">
+                <span class="stat-value" id="tasks-completed">0</span>
+                <span class="stat-label">Tarefas Concluídas</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="minutes-focused">0</span>
+                <span class="stat-label">Minutos Focados</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="total-tasks">0</span>
+                <span class="stat-label">Total de Tarefas</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="efficiency-rate">0%</span>
+                <span class="stat-label">Taxa de Eficiência</span>
+            </div>
+        </header>
+
+        <!-- Linha do tempo / resumo rápido (gerado pela IA) -->
+        <section class="daily-insight" id="daily-insight">
+            <p>✨ <span id="insight-text">Carregando seu resumo do dia...</span></p>
+        </section>
+
+        <!-- Timers -->
+        <div class="timers-row">
+            <div class="timer-card">
+                <h2>⏱️ Timer Pomodoro</h2>
+                <div class="timer-display" id="pomodoro-display">25:00</div>
+                <div class="timer-controls">
+                    <button id="pomodoro-start">Iniciar</button>
+                    <button id="pomodoro-pause">Pausar</button>
+                    <button id="pomodoro-reset">Reiniciar</button>
+                </div>
+            </div>
+            <div class="timer-card">
+                <h2>⏱️ Cronômetro</h2>
+                <div class="timer-display" id="stopwatch-display">00:00:00</div>
+                <div class="timer-controls">
+                    <button id="stopwatch-start">Iniciar</button>
+                    <button id="stopwatch-pause">Pausar</button>
+                    <button id="stopwatch-reset">Reiniciar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Matriz de Prioridades (interativa) -->
+        <section class="matrix">
+            <h2>📊 Matriz de Prioridades</h2>
+            <div class="matrix-grid">
+                <div class="quadrant urgent-important" data-quadrant="urgent-important">
+                    <h3>🔴 Urgente & Importante</h3>
+                    <ul class="task-list" id="quadrant-urgent-important"></ul>
+                    <button class="add-task-btn" data-quadrant="urgent-important">+ Adicionar</button>
+                </div>
+                <div class="quadrant important-not-urgent" data-quadrant="important-not-urgent">
+                    <h3>🟢 Importante & Não Urgente</h3>
+                    <ul class="task-list" id="quadrant-important-not-urgent"></ul>
+                    <button class="add-task-btn" data-quadrant="important-not-urgent">+ Adicionar</button>
+                </div>
+                <div class="quadrant urgent-not-important" data-quadrant="urgent-not-important">
+                    <h3>🟡 Urgente & Não Importante</h3>
+                    <ul class="task-list" id="quadrant-urgent-not-important"></ul>
+                    <button class="add-task-btn" data-quadrant="urgent-not-important">+ Adicionar</button>
+                </div>
+                <div class="quadrant not-urgent-not-important" data-quadrant="not-urgent-not-important">
+                    <h3>⚪ Não Urgente & Não Importante</h3>
+                    <ul class="task-list" id="quadrant-not-urgent-not-important"></ul>
+                    <button class="add-task-btn" data-quadrant="not-urgent-not-important">+ Adicionar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- IA Multimodal -->
+        <section class="multimodal">
+            <h2>📚 IA Multimodal - Processar Documentos</h2>
+            <div class="upload-areas">
+                <div class="upload-box">
+                    <label>📄 Texto</label>
+                    <textarea id="text-input" placeholder="Cole seu texto aqui..."></textarea>
+                    <button id="process-text">Processar</button>
+                </div>
+                <div class="upload-box">
+                    <label>🖼️ Imagem (OCR)</label>
+                    <input type="file" id="image-input" accept="image/*">
+                    <div id="ocr-result"></div>
+                </div>
+                <div class="upload-box">
+                    <label>📕 PDF</label>
+                    <input type="file" id="pdf-input" accept=".pdf">
+                    <div id="pdf-result"></div>
+                </div>
+                <div class="upload-box">
+                    <label>🎵 Áudio</label>
+                    <input type="file" id="audio-input" accept="audio/*">
+                    <div id="transcription-result"></div>
+                </div>
+                <div class="upload-box">
+                    <label>▶️ YouTube</label>
+                    <input type="url" id="youtube-url" placeholder="URL do vídeo">
+                    <button id="process-youtube">Transcrever</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- IA Estratégica Avançada (com sugestão de tarefas) -->
+        <section class="strategic">
+            <h2>🤖 IA Estratégica Avançada</h2>
+            <textarea id="project-description" placeholder="Descreva seu projeto ou objetivo. A IA analisará todos os documentos carregados e criará a melhor estrutura."></textarea>
+            <button id="generate-plan">Gerar Plano</button>
+            <button id="generate-tasks" style="margin-left: 10px;">✨ Gerar Tarefas para Matriz</button>
+            <div id="strategic-output" class="output-box"></div>
+        </section>
+
+        <!-- NOVO: Agentes de Trabalho (Centro de Operações) -->
+        <section class="agents">
+            <h2>🤖 Agentes de Trabalho</h2>
+            <div class="agents-grid" id="agents-grid">
+                <!-- Cards serão gerados dinamicamente -->
+            </div>
+            <!-- Chat com a IA Central -->
+            <div class="central-chat">
+                <h3>Central de Comando (IA Consciente)</h3>
+                <div class="chat-messages" id="chat-messages"></div>
+                <div class="chat-input-area">
+                    <input type="text" id="chat-input" placeholder="Fale com sua IA...">
+                    <button id="send-chat">Enviar</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
